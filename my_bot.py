@@ -15,10 +15,12 @@ def should_i_respond(user_message, user_name):
   if "Frost" in user_message:
     return True
   elif gameState != 'not playing':
-    if user_message in" Rock rock Paper paper Scissors scissors ":
+    if 'rock' in user_message.lowercase():
       return True
-    else:
-      gameState = "cheat"
+    elif 'paper' in user_message.lowercase():
+      return True
+    elif 'scissors' in user_message.lowercase():
+      return True
   else:
     return False
 
