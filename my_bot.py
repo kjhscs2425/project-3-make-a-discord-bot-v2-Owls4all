@@ -16,11 +16,11 @@ def should_i_respond(user_message, user_name):
   if "Frost" in user_message:
     return True
   elif gameState != 'not playing':
-    if 'rock' in user_message.lowercase():
+    if 'rock' in user_message.lower():
       return True
-    elif 'paper' in user_message.lowercase():
+    elif 'paper' in user_message.lower():
       return True
-    elif 'scissors' in user_message.lowercase():
+    elif 'scissors' in user_message.lower():
       return True
   else:
     return False
@@ -82,9 +82,9 @@ def respond(user_message, user_name):
       return "I choose rock."
   if gameState == 'fair':
     return f"I choose {fairchoice}."
-  if 'do you like potatoes' in user_message.lowercase():
+  if 'do you like potatoes' in user_message.lower():
     return "Yes."
-  if 'i like potatoes' in user_message.lowercase:
+  if 'i like potatoes' in user_message.lower:
     return 'I like potatoes too.'
   return "I don't know what that means"
   
