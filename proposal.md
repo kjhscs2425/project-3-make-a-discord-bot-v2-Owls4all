@@ -14,7 +14,7 @@ When a user says: Frost are you a person
 My bot will respond by: no
 
 When a user says: I like potatoes
-My bot will respond by: me too
+My bot will respond by: I like potatoes too
 
 When a user says: do you like potatoes
 My bot will respond by: yes

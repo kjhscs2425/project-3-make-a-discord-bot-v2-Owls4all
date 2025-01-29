@@ -2,6 +2,7 @@ import random
 gameState = "not playing"
 choice = "none"
 fairchoice = 'none'
+playerchoice = 'none'
 """**Do NOT change the name of this function.**
 
 This function will be called every time anyone says anything on a channel where the bot lives.
@@ -57,32 +58,36 @@ def respond(user_message, user_name):
   if "let's play rock paper scissors" in user_message or "lets play rock paper scissors" in user_message:
     if gameState == 'not playing':
       gameState == 'fair'
-      fairchoice = ['rock','paper','scissors']
+      fairchoices = ['rock','paper','scissors']
     return "All right. I've chosen something. What will you choose?"
   if gameState == 'cheat':
-    if user_message.lowercase() == 'rock':
+    if playerchoice == 'rock':
       gameState = 'not playing'
-      return "I choose paper"
-    if user_message.lowercase() == 'paper':
+      return "I choose paper."
+    if playerchoice == 'paper':
       gameState = 'not playing'
-      return "I choose scissors"
-    if user_message.lowercase() == 'scissors':
+      return "I choose scissors."
+    if playerchoice == 'scissors':
       gameState = 'not playing'
-      return "rock"
+      return "I choose rock."
   if gameState == 'player wins':
-    if user_message.lowercase() == 'scissors':
+    if playerchoice == 'scissors':
       gameState = 'not playing'
-      return "I choose paper"
-    if user_message.lowercase() == 'rock':
+      return "I choose paper."
+    if playerchoice == 'rock':
       gameState = 'not playing'
-      return "I choose scissors"
-    if user_message.lowercase() == 'paper':
+      return "I choose scissors."
+    if playerchoice == 'paper':
       gameState = 'not playing'
-      return "rock"
+      return "I choose rock."
   if gameState == 'fair':
-    return f"I choose {fairchoice[random.randint(0,2)]}"
+    return f"I choose {fairchoices[random.randint(0,2)]}."
+  if 'do you like potatoes' in user_message.lowercase():
+    return "Yes."
+  if 'i like potatoes' in user_message.lowercase:
+    return 'I like potatoes too.'
   return "I don't know what that means"
-
+  
 
 # For testing purposes:
 '''
