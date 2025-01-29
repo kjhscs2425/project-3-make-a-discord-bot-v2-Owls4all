@@ -15,7 +15,7 @@ def should_i_respond(user_message, user_name):
   if "Frost" in user_message:
     return True
   elif gameState != 'not playing':
-    if user_message in"RockrockPaperpaperScissorsscissors":
+    if user_message in" Rock rock Paper paper Scissors scissors ":
       return True
     else:
       gameState = "cheat"
@@ -44,6 +44,14 @@ def respond(user_message, user_name):
     - be annoying
     - and so much more! [aka coming soon]
     """
+  if 'give me a number' in user_message:
+    choice = random.randint(0,1)
+    if choice == 1:
+      return "e"
+    if choice == 0:
+      return "π"
+  if 'give me an integer' in user_message:
+    return random.randint(1,10)
   if "let's play rock paper scissors" in user_message or "lets play rock paper scissors" in user_message:
     if gameState == 'not playing':
       gameState == 'fair'
