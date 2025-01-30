@@ -58,9 +58,9 @@ def respond(user_message, user_name):
     return random.randint(1,10)
   if "let's play rock paper scissors" in user_message or "lets play rock paper scissors" in user_message:
     if gameState == 'not playing':
-      gameState == 'fair'
+      gameState = 'fair'
       fairchoice = random.choice(['rock','paper','scissors'])
-    return "All right. I've chosen something. What will you choose?"
+    return "All right. I've chosen something. What will you choose?"+f' gameState={gameState}'
   if gameState == 'cheat':
     if playerchoice == 'rock':
       gameState = 'not playing'
@@ -112,6 +112,8 @@ def respond(user_message, user_name):
           return f"I am {state} {amIA}."
         else:
           return f"I am not {state} {amIA}."
+  if 'what time is it' in user_message:
+    return 'Time for you to get a watch.'
   return "I don't know what that means"
   
 
