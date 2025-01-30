@@ -1,4 +1,5 @@
 import random
+from utility import *
 gameState = "not playing"
 choice = "none"
 fairchoice = 'none'
@@ -86,6 +87,30 @@ def respond(user_message, user_name):
     return "Yes."
   if 'i like potatoes' in user_message.lower():
     return 'I like potatoes too.'
+  if 'are you a' in user_message.lower():
+    state = 'not'
+    amIA = ''
+    for word in user_message.split(' '):
+      if word.lower() == 'are':
+        state = 'are'
+      elif state == 'are':
+        if word == 'you':
+          state = 'you'
+        else:
+          state = 'not'
+      elif state == 'you':
+        if word == 'a':
+          state = 'a'
+        elif word == 'an':
+          state == 'an'
+        else:
+          state = 'not'
+      elif state == 'a' or state == 'an':
+        amIA = word
+        if searchList(amIA,['robot','bot','computer','program']):
+          return f"I am {state} {amIA}."
+        else:
+          return f"I am not {state} {amIA}."
   return "I don't know what that means"
   
 
