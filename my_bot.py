@@ -4,6 +4,7 @@ gameState = "not playing"
 choice = "none"
 fairchoice = 'none'
 playerchoice = 'none'
+options = ['rock','paper','scissors']
 """**Do NOT change the name of this function.**
 
 This function will be called every time anyone says anything on a channel where the bot lives.
@@ -39,6 +40,7 @@ def respond(user_message, user_name):
   global gameState
   global playerchoice
   global fairchoice
+  global options
   if user_message == 'Frost':
     return "That's me!"
   if "what can you do" in user_message:
@@ -59,8 +61,21 @@ def respond(user_message, user_name):
   if "let's play rock paper scissors" in user_message or "lets play rock paper scissors" in user_message:
     if gameState == 'not playing':
       gameState = 'fair'
-      fairchoice = random.choice(['rock','paper','scissors'])
+      fairchoice = random.choice(options)
     return "All right. I've chosen something. What will you choose?"+f' gameState={gameState}'
+  if gameState != 'not playing':
+    if 'rock' in user_message.lower() and not 'paper' in user_message.lower() and not 'scissors' in user_message.lower():
+      playerchoice = 'rock'
+    elif not 'rock' in user_message.lower() and 'paper' in user_message.lower() and not 'scissors' in user_message.lower():
+      playerchoice = 'paper'
+    elif not 'rock' in user_message.lower() and not 'paper' in user_message.lower() and 'scissors' in user_message.lower():
+      playerchoice = 'scissors'
+    else:
+      if 'rock' or 'paper' or 'scissors' in user_message.lower():
+        gameState = 'cheat'
+        return "You can't choose multiple options! That's cheating!"
+      else:
+        return "That's not one of the options"
   if gameState == 'cheat':
     if playerchoice == 'rock':
       gameState = 'not playing'
@@ -82,7 +97,14 @@ def respond(user_message, user_name):
       gameState = 'not playing'
       return "I choose rock."
   if gameState == 'fair':
-    return f"I choose {fairchoice}."
+    victorStatement = '' 
+    if indexInList(playerchoice,options) == indexInList(fairchoice,options):
+      victorStatement = "The game is a tie." 
+    elif indexInList(playerchoice,options) - indexInList(fairchoice,options) == 1:
+      victorStatement = f"{playerchoice} beats {fairchoice}. You win." 
+    elif indexInList(playerchoice,options) - indexInList(fairchoice,options) !=1:
+      victorStatement = f"{fairchoice} beats {playerchoice}. I win."
+    return f"I choose {fairchoice}. {victorStatement}"
   if 'do you like potatoes' in user_message.lower():
     return "Yes."
   if 'i like potatoes' in user_message.lower():
@@ -106,9 +128,9 @@ def respond(user_message, user_name):
         else:
           state = 'not'
       elif state == 'a' or state == 'an':
-        amIA = word
+        amIA += word
         amIA.replace('?','')
-        if searchList(amIA,['robot','bot','computer','program']):
+        if searchList(amIA,['robot','bot','computer','program','computer program','discord bot']):
           return f"I am {state} {amIA}."
         else:
           return f"I am not {state} {amIA}."
