@@ -62,7 +62,7 @@ def respond(user_message, user_name):
     if gameState == 'not playing':
       gameState = 'fair'
       fairchoice = random.choice(options)
-    return "All right. I've chosen something. What will you choose?"+f' gameState={gameState}'
+    return "All right. I've chosen something. What will you choose?"#+f' gameState={gameState}'
   if gameState != 'not playing':
     if 'rock' in user_message.lower() and not 'paper' in user_message.lower() and not 'scissors' in user_message.lower():
       playerchoice = 'rock'
