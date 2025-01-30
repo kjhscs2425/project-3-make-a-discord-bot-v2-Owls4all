@@ -107,6 +107,7 @@ def respond(user_message, user_name):
           state = 'not'
       elif state == 'a' or state == 'an':
         amIA = word
+        amIA.replace('?','')
         if searchList(amIA,['robot','bot','computer','program']):
           return f"I am {state} {amIA}."
         else:
