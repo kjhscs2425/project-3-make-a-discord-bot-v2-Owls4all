@@ -84,7 +84,7 @@ def respond(user_message, user_name):
     return f"I choose {fairchoice}."
   if 'do you like potatoes' in user_message.lower():
     return "Yes."
-  if 'i like potatoes' in user_message.lower:
+  if 'i like potatoes' in user_message.lower():
     return 'I like potatoes too.'
   return "I don't know what that means"
   
