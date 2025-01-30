@@ -104,6 +104,8 @@ def respond(user_message, user_name):
       victorStatement = f"{playerchoice} beats {fairchoice}. You win." 
     elif indexInList(playerchoice,options) - indexInList(fairchoice,options) !=1:
       victorStatement = f"{fairchoice} beats {playerchoice}. I win."
+    if playerchoice == 'rock' and fairchoice == 'scissors':
+      victorStatement = f"{playerchoice} beats {fairchoice}. You win." 
     return f"I choose {fairchoice}. {victorStatement}"
   if 'do you like potatoes' in user_message.lower():
     return "Yes."
