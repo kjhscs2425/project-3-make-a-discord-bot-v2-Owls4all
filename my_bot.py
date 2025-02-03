@@ -243,9 +243,9 @@ def respond(user_message, user_name):
       elif state == 'is':
         key += word + ' '
     if storage.__contains__(key):
-      return f"{key} is {storage[key]}"
+      return f"{key}is {storage[key]}"
     else:
-      return f"I'm not sure what {key} means"
+      return f"I can't remember what {key}means. Maybe I never knew?"
   if "what does" in user_message and 'mean?' in user_message:
     state =''
     key = ''
@@ -261,8 +261,8 @@ def respond(user_message, user_name):
         if word != 'mean?':
           key += word + ' '
     if storage.__contains__(key):
-      return f"{key} means {storage[key]}"
+      return f"{key}means {storage[key]}"
     else:
-      return f"I'm not sure what {key} means"
+      return f"I can't remember what {key}means. Maybe I never knew?"
   return "I don't know what that means"
   
