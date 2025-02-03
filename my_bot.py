@@ -228,6 +228,7 @@ def respond(user_message, user_name):
       elif state == 'set value':
         value += word + ' '
     storage.key = value
+    return f"Got it. {key} = {value}"
   if "what is" in user_message:
     state = ''
     key = ''
