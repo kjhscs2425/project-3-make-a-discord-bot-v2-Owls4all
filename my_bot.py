@@ -175,9 +175,19 @@ def respond(user_message, user_name):
             type = int(numbers[0])
       elif state == 'found dice':
         if '+' in word:
-          modifier = int(word[word.find('+'):])
+          if '+' == word:
+            state = '+'
+          else:
+            modifier = int(word[word.find('+'):])
         elif '-' in word:
-          modifier = 0-int(word[word.find('-'):])
+          if word == '-':
+            state = '-'
+          else:
+            modifier = 0-int(word[word.find('-'):])
+      elif state == '+':
+        modifier = int(word)
+      elif state == '-':
+        modifier = 0-int(word)
     total = 0
     values = []
     for i in range(count):
