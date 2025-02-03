@@ -227,7 +227,7 @@ def respond(user_message, user_name):
           key += word + ' '
       elif state == 'set value':
         value += word + ' '
-    storage.key = value
+    storage[key] = value
     return f"Got it. {key} = {value}"
   if "what is" in user_message:
     state = ''
@@ -242,7 +242,7 @@ def respond(user_message, user_name):
           state = ''
       elif state == 'is':
         key += word + ' '
-    return f"{key} is {storage.key}"
+    return f"{key} is {storage[key]}"
   if "what does" in user_message and 'mean?' in user_message:
     state =''
     key = ''
@@ -257,6 +257,6 @@ def respond(user_message, user_name):
       elif state == 'does':
         if word != 'mean?':
           key += word + ' '
-    return f"{key} means {storage.key}"
+    return f"{key} means {storage[key]}"
   return "I don't know what that means"
   
