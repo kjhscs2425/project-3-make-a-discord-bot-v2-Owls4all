@@ -71,7 +71,7 @@ def respond(user_message, user_name):
     elif not 'rock' in user_message.lower() and not 'paper' in user_message.lower() and 'scissors' in user_message.lower():
       playerchoice = 'scissors'
     else:
-      if 'rock' or 'paper' or 'scissors' in user_message.lower():
+      if 'rock' in user_message.lower()or 'paper' in user_message.lower()or 'scissors' in user_message.lower():
         gameState = 'cheat'
         return "You can't choose multiple options! That's cheating!"
       else:
