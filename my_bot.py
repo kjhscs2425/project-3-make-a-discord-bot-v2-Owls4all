@@ -188,6 +188,7 @@ def respond(user_message, user_name):
     for value in values:
       if which_value == 0:
         output += f' ({value}'
+        which_value = 'not the 1st one'
       else:
         output += f'+{value}'
     output += ')'
