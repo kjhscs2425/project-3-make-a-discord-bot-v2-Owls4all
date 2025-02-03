@@ -1,4 +1,4 @@
-import random
+import random as r
 from utility import *
 gameState = "not playing"
 choice = "none"
@@ -51,17 +51,17 @@ def respond(user_message, user_name):
     - and so much more! [aka coming soon]
     """
   if 'give me a number' in user_message:
-    choice = random.randint(0,1)
+    choice = r.randint(0,1)
     if choice == 1:
       return "e"
     if choice == 0:
       return "π"
   if 'give me an integer' in user_message:
-    return random.randint(1,10)
+    return r.randint(1,10)
   if "let's play rock paper scissors" in user_message or "lets play rock paper scissors" in user_message:
     if gameState == 'not playing':
       gameState = 'fair'
-      fairchoice = random.choice(options)
+      fairchoice = r.choice(options)
     return "All right. I've chosen something. What will you choose?"#+f' gameState={gameState}'
   if gameState != 'not playing':
     if 'rock' in user_message.lower() and not 'paper' in user_message.lower() and not 'scissors' in user_message.lower():
@@ -138,18 +138,57 @@ def respond(user_message, user_name):
           return f"I am not {state} {amIA}."
   if 'what time is it' in user_message:
     return 'Time for you to get a watch.'
+  if "roll" in user_message and "d" in user_message:
+    count = 1
+    type = 6
+    state = 'none'
+    modifier = 0
+    for word in user_message.split(' '):
+      if word.lower() == 'roll':
+        state = 'roll'
+      elif state == 'roll':
+        if word.lower == 'a':
+          state = 'a'
+        elif 'd' in word:
+          state = 'found dice'
+          numbers = word.split('d')
+          for thing in numbers:
+            if thing.isdigit():
+              pass
+            else:
+              return "I can't roll dice that aren't numbers!"
+          if len(numbers)==2:
+            count=int(numbers[0])
+            type =int(numbers[1])
+          else:
+            type = int(numbers[0])
+      elif state == 'a':
+        if 'd' in word:
+          state = 'found dice'
+          numbers = word.split('d')
+          for thing in numbers:
+            if thing.isdigit():
+              pass
+            else:
+              return "I can't roll dice that aren't numbers!"
+            type = int(numbers[0])
+      elif state == 'found dice':
+        if '+' in word:
+          modifier = int(word[word.find('+'):])
+        elif '-' in word:
+          modifier = 0-int(word[word.find('-'):])
+    total = 0
+    values = []
+    for i in range(count):
+      values.append(r.randint(1,type))
+      total += values[-1]
+    output = f'The total is {total}.'
+    for value in values:
+      output += f' +{value}'
+    if modifier >0:
+      output += f" +{modifier}"
+    if modifier <0:
+      output += f" {modifier}"
+    return output
   return "I don't know what that means"
   
-
-# For testing purposes:
-'''
-username = 'user'
-quit = False
-while not quit:
-  userInput = input('>>>')
-  if 'quit' in userInput:
-    quit=True
-  if should_i_respond(userInput,username):
-    print(respond(userInput,username))
-  
-'''
