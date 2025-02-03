@@ -188,7 +188,7 @@ def respond(user_message, user_name):
         modifier = int(word)
       elif state == '-':
         modifier = 0-int(word)
-    total = 0
+    total = modifier
     values = []
     for i in range(count):
       values.append(r.randint(1,type))
