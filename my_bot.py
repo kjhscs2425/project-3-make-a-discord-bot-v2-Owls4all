@@ -106,6 +106,7 @@ def respond(user_message, user_name):
       victorStatement = f"{fairchoice} beats {playerchoice}. I win."
     if playerchoice == 'rock' and fairchoice == 'scissors':
       victorStatement = f"{playerchoice} beats {fairchoice}. You win." 
+    gameState = 'not playing'
     return f"I choose {fairchoice}. {victorStatement}"
   if 'do you like potatoes' in user_message.lower():
     return "Yes."
