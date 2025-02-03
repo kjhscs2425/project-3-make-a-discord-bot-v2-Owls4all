@@ -242,7 +242,7 @@ def respond(user_message, user_name):
           state = ''
       elif state == 'is':
         key += word + ' '
-    if searchList(key, storage.keys):
+    if storage.__contains__(key):
       return f"{key} means {storage[key]}"
     else:
       return f"I'm not sure what {key} means"
@@ -260,7 +260,7 @@ def respond(user_message, user_name):
       elif state == 'does':
         if word != 'mean?':
           key += word + ' '
-    if searchList(key, storage.keys):
+    if storage.__contains__(key):
       return f"{key} means {storage[key]}"
     else:
       return f"I'm not sure what {key} means"
