@@ -190,5 +190,9 @@ def respond(user_message, user_name):
     if modifier <0:
       output += f" {modifier}"
     return output
+  if "are you there" in user_message:
+    return "I'm here. What do you need?"
+  if 'are you listening' in user_message:
+    return "Yes, I'm listening. What's up?"
   return "I don't know what that means"
   
