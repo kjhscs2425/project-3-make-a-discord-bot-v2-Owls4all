@@ -5,6 +5,7 @@ choice = "none"
 fairchoice = 'none'
 playerchoice = 'none'
 options = ['rock','paper','scissors']
+storage ={}
 """**Do NOT change the name of this function.**
 
 This function will be called every time anyone says anything on a channel where the bot lives.
@@ -41,6 +42,7 @@ def respond(user_message, user_name):
   global playerchoice
   global fairchoice
   global options
+  global storage
   if user_message == 'Frost':
     return "That's me!"
   if "what can you do" in user_message:
@@ -211,5 +213,49 @@ def respond(user_message, user_name):
     return "I'm here. What do you need?"
   if 'are you listening' in user_message:
     return "Yes, I'm listening. What's up?"
+  if "remember" in user_message:
+    key = ""
+    state = 'none'
+    value = ''
+    for word in user_message.split(' '):
+      if word == 'remember':
+        state = 'set key'
+      elif state == 'set key':
+        if word == '=':
+          state = 'set value'
+        else:
+          key += word + ' '
+      elif state == 'set value':
+        value += word + ' '
+    storage.key = value
+  if "what is" in user_message:
+    state = ''
+    key = ''
+    for word in user_message.split(' '):
+      if word == 'what':
+        state = 'what'
+      elif state == 'what':
+        if word == 'is':
+          state = 'is'
+        else:
+          state = ''
+      elif state == 'is':
+        key += word + ' '
+    return f"{key} is {storage.key}"
+  if "what does" in user_message and 'mean?' in user_message:
+    state =''
+    key = ''
+    for word in user_message.split(' '):
+      if word == 'what':
+        state = 'what'
+      elif state == 'what':
+        if word == 'does':
+          state = 'does'
+        else:
+          state = ''
+      elif state == 'does':
+        if word != 'mean?':
+          key += word + ' '
+    return f"{key} means {storage.key}"
   return "I don't know what that means"
   
