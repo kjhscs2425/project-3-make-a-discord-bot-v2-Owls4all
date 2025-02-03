@@ -169,7 +169,7 @@ def respond(user_message, user_name):
           numbers = word.split('d')
           for thing in numbers:
             if thing.isdigit():
-              pass
+              type = int(thing)
             else:
               return "I can't roll dice that aren't numbers!"
             type = int(numbers[0])
@@ -184,8 +184,13 @@ def respond(user_message, user_name):
       values.append(r.randint(1,type))
       total += values[-1]
     output = f'The total is {total}.'
+    which_value = 0
     for value in values:
-      output += f' +{value}'
+      if which_value == 0:
+        output += f' ({value}'
+      else:
+        output += f'+{value}'
+    output += ')'
     if modifier >0:
       output += f" +{modifier}"
     if modifier <0:
