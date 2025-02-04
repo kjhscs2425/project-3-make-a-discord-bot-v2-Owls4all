@@ -42,7 +42,7 @@ def updateData():
   my_file.write(string_to_save)
 def getData():
   global storage
-  my_file = open('knowlegde.txt','r')
+  my_file = open('knowledge.txt','r')
   saved_string = my_file.read()
   for pair in saved_string.split('-PAIR-'):
     things = pair.split('-SPLIT-HERE-')
