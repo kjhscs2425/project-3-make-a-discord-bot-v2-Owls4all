@@ -229,7 +229,7 @@ def respond(user_message, user_name):
         value += word + ' '
     storage[key] = value
     return f"Got it. {key} = {value}"
-  if "what is" in user_message:
+  if "what is" in user_message.replace('?',''):
     state = ''
     key = ''
     for word in user_message.split(' '):
@@ -241,12 +241,12 @@ def respond(user_message, user_name):
         else:
           state = ''
       elif state == 'is':
-        key += word + ' '
+        key += word.replace('?','') + ' '
     if storage.__contains__(key):
       return f"{key}is {storage[key]}"
     else:
       return f"I can't remember what {key}means. Maybe I never knew?"
-  if "what does" in user_message and 'mean?' in user_message:
+  if "what does" in user_message and 'mean' in user_message.replace('?',''):
     state =''
     key = ''
     for word in user_message.split(' '):
@@ -258,8 +258,8 @@ def respond(user_message, user_name):
         else:
           state = ''
       elif state == 'does':
-        if word != 'mean?':
-          key += word + ' '
+        if word != 'mean':
+          key += word.replace('?','') + ' '
     if storage.__contains__(key):
       return f"{key}means {storage[key]}"
     else:
