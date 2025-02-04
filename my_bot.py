@@ -246,8 +246,10 @@ def respond(user_message, user_name):
       elif state == 'set value':
         value += word + ' '
     storage[key] = value
+    updateData()
     return f"Got it. {key} = {value}"
   if "what is" in user_message.replace('?',''):
+    getData()
     state = ''
     key = ''
     for word in user_message.split(' '):
@@ -265,6 +267,7 @@ def respond(user_message, user_name):
     else:
       return f"I can't remember what {key}is. Maybe I never knew?"
   if "what does" in user_message and 'mean' in user_message.replace('?',''):
+    getData()
     state =''
     key = ''
     for word in user_message.split(' '):
