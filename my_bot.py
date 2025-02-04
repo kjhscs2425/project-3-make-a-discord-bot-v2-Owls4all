@@ -6,6 +6,7 @@ fairchoice = 'none'
 playerchoice = 'none'
 options = ['rock','paper','scissors']
 storage ={}
+
 """**Do NOT change the name of this function.**
 
 This function will be called every time anyone says anything on a channel where the bot lives.
@@ -28,9 +29,26 @@ def should_i_respond(user_message, user_name):
   else:
     return False
 
+def updateData():
+  global storage
+  getData()
+  my_file = open('knowledge.txt','w')
+  string_to_save = ''
+  for key in storage.keys:
+    string_to_save += key
+    string_to_save += '-SPLIT-HERE-'
+    string_to_save += storage[key]
+    string_to_save += '-PAIR-'
+  my_file.write(string_to_save)
+def getData():
+  global storage
+  my_file = open('knowlegde.txt','r')
+  saved_string = my_file.read()
+  for pair in saved_string.split('-PAIR-'):
+    things = pair.split('-SPLIT-HERE-')
+    storage[things[0]]=things[1]
 """
 **Do NOT change the name of this function.**
-
 This function will be called every time the `should_i_respond` function returns `True`.
 
 * This function returns a string.
