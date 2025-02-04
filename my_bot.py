@@ -34,7 +34,7 @@ def updateData():
   getData()
   my_file = open('knowledge.txt','w')
   string_to_save = ''
-  for key in storage.keys:
+  for key in storage.keys():
     string_to_save += key
     string_to_save += '-SPLIT-HERE-'
     string_to_save += storage[key]
@@ -46,7 +46,7 @@ def getData():
   saved_string = my_file.read()
   for pair in saved_string.split('-PAIR-'):
     things = pair.split('-SPLIT-HERE-')
-    storage[things[0]]=things[1]
+    storage[things[0]]=things[-1]
 """
 **Do NOT change the name of this function.**
 This function will be called every time the `should_i_respond` function returns `True`.
