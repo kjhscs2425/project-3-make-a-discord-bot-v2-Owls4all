@@ -1,7 +1,6 @@
 import random as r
 from utility import *
 gameState = "not playing"
-choice = "none"
 fairchoice = 'none'
 playerchoice = 'none'
 options = ['rock','paper','scissors']
