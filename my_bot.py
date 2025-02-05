@@ -197,9 +197,9 @@ def respond(user_message, user_name):
           for thing in numbers:
             if thing.isdigit():
               type = int(thing)
-            else:
+            elif thing !='':
               return "I can't roll dice that aren't numbers!"
-            type = int(numbers[0])
+            type = int(numbers[-1])
       elif state == 'found dice':
         if '+' in word:
           if '+' == word:
