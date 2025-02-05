@@ -3,6 +3,7 @@ from utility import *
 gameState = "not playing"
 fairchoice = 'none'
 playerchoice = 'none'
+rps_player = 'nobody'
 options = ['rock','paper','scissors']
 storage ={}
 
@@ -16,9 +17,10 @@ This function will be called every time anyone says anything on a channel where 
 """
 def should_i_respond(user_message, user_name):
   global gameState
+  global rps_player
   if "Frost" in user_message:
     return True
-  elif gameState != 'not playing':
+  elif gameState != 'not playing' and rps_player == user_name:
     if 'rock' in user_message.lower():
       return True
     elif 'paper' in user_message.lower():
@@ -60,6 +62,7 @@ def respond(user_message, user_name):
   global fairchoice
   global options
   global storage
+  global rps_player
   if user_message == 'Frost':
     return "That's me!"
   if "what can you do" in user_message:
@@ -67,7 +70,9 @@ def respond(user_message, user_name):
     - give a number between 1 and 10
     - play rock paper scissors
     - be annoying
-    - and so much more! [aka coming soon]
+    - remember things
+    - roll dice
+    - And so much more! (well, in theory...)
     """
   if 'give me a number' in user_message:
     choice = r.randint(0,1)
@@ -81,8 +86,9 @@ def respond(user_message, user_name):
     if gameState == 'not playing':
       gameState = 'fair'
       fairchoice = r.choice(options)
+      rps_player = user_name
     return "All right. I've chosen something. What will you choose?"#+f' gameState={gameState}'
-  if gameState != 'not playing':
+  if gameState != 'not playing' and rps_player == user_name:
     if 'rock' in user_message.lower() and not 'paper' in user_message.lower() and not 'scissors' in user_message.lower():
       playerchoice = 'rock'
     elif not 'rock' in user_message.lower() and 'paper' in user_message.lower() and not 'scissors' in user_message.lower():
@@ -95,6 +101,8 @@ def respond(user_message, user_name):
         return "You can't choose multiple options! That's cheating!"
       else:
         return "That's not one of the options"
+  if rps_player == 'owls4all' or rps_player == 'school CS burner account':
+    gameState == 'player wins'
   if gameState == 'cheat':
     if playerchoice == 'rock':
       gameState = 'not playing'
