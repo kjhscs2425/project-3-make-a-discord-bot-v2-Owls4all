@@ -1,5 +1,6 @@
 import random as r
 from utility import *
+from games import *
 gameState = "not playing"
 fairchoice = 'none'
 playerchoice = 'none'
@@ -20,13 +21,8 @@ def should_i_respond(user_message, user_name):
   global rps_player
   if "Frost" in user_message:
     return True
-  elif gameState != 'not playing' and rps_player == user_name:
-    if 'rock' in user_message.lower():
-      return True
-    elif 'paper' in user_message.lower():
-      return True
-    elif 'scissors' in user_message.lower():
-      return True
+  elif gameState != 'not playing':
+    return True
   else:
     return False
 
@@ -58,11 +54,11 @@ This function will be called every time the `should_i_respond` function returns 
 """
 def respond(user_message, user_name):
   global gameState
-  global playerchoice
-  global fairchoice
+  global rps
+  global ticTacToe
   global options
   global storage
-  global rps_player
+  
   if user_message == 'Frost':
     return "That's me!"
   if "what can you do" in user_message:
