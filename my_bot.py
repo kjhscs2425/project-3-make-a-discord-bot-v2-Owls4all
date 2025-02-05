@@ -18,7 +18,8 @@ This function will be called every time anyone says anything on a channel where 
 """
 def should_i_respond(user_message, user_name):
   global gameState
-  global rps_player
+  global rps
+  global ticTacToe
   if "Frost" in user_message:
     return True
   elif gameState != 'not playing':
@@ -78,13 +79,15 @@ def respond(user_message, user_name):
       return "π"
   if 'give me an integer' in user_message:
     return r.randint(1,10)
-  if "let's play rock paper scissors" in user_message or "lets play rock paper scissors" in user_message:
+  if "play a game" in user_message:
     if gameState == 'not playing':
-      gameState = 'fair'
-      fairchoice = r.choice(options)
-      rps_player = user_name
-    return "All right. I've chosen something. What will you choose?"#+f' gameState={gameState}'
-  if gameState != 'not playing' and rps_player == user_name:
+      gameState = 'choosing'
+    return "All right. What do you want to play? I know tic tac toe and rock paper scissors."
+  if gameState == 'choosing':
+    if 'rock paper scissors' in user_message:
+      rps.player = user_name
+      rps.isPlaying = True
+  if rps.isPlaying and rps.player == user_name:
     if 'rock' in user_message.lower() and not 'paper' in user_message.lower() and not 'scissors' in user_message.lower():
       playerchoice = 'rock'
     elif not 'rock' in user_message.lower() and 'paper' in user_message.lower() and not 'scissors' in user_message.lower():
@@ -97,7 +100,7 @@ def respond(user_message, user_name):
         return "You can't choose multiple options! That's cheating!"
       else:
         return "That's not one of the options"
-  if rps_player == 'owls4all' or rps_player == 'school CS burner account':
+  if rps.player == 'owls4all' or rps.player == 'school CS burner account':
     gameState == 'player wins'
   if gameState == 'cheat':
     if playerchoice == 'rock':
