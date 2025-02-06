@@ -52,21 +52,21 @@ class game:
                 for space in self.state():
                     if space == ' ':
                         self.state = 'ongoing'
-                if  self.state[0] == self.state[1] == self.state[2]:
+                if  self.state[0] == self.state[1] == self.state[2] != ' ':
                     self.result = f"{self.state[0]} Wins!"
-                if self.state[0] == self.state[3] == self.state[6]:
+                if self.state[0] == self.state[3] == self.state[6] != ' ':
                     self.result = f"{self.state[0]} Wins!"
-                if self.state[0] == self.state[4] == self.state[8]:
+                if self.state[0] == self.state[4] == self.state[8]!= ' ':
                     self.result = f"{self.state[0]} Wins!"
-                if self.state[1] == self.state[4] == self.state[7]:
+                if self.state[1] == self.state[4] == self.state[7]!= ' ':
                     self.result = f"{self.state[1]} Wins!"
-                if self.state[3] == self.state[4] == self.state[5]:
+                if self.state[3] == self.state[4] == self.state[5]!= ' ':
                     self.result = f"{self.state[3]} Wins!"
-                if self.state[2] == self.state[5] == self.state[8]:
+                if self.state[2] == self.state[5] == self.state[8] != ' ':
                     self.result = f"{self.state[2]} Wins!"
-                if self.state[2] == self.state[4] == self.state[6]:
+                if self.state[2] == self.state[4] == self.state[6] != ' ':
                     self.result = f"{self.state[2]} Wins!"
-                if self.state[6] == self.state[7] == self.state[8]:
+                if self.state[6] == self.state[7] == self.state[8] != ' ':
                     self.result = f"{self.state[6]} Wins!"
                 if self.state == 'ongoing':
                     attempt = 'undecided'
