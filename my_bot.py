@@ -94,6 +94,8 @@ def respond(user_message, user_name):
       ticTacToe.player = user_name
       ticTacToe.isPlaying = True
       return f'All right. You go first. The current board state is {ticTacToe.displayState()}'
+    else:
+      return f"I don't know a game called {user_message}."
   if rps.isPlaying and rps.player == user_name:
     if 'rock' in user_message.lower() and not 'paper' in user_message.lower() and not 'scissors' in user_message.lower():
       playerchoice = 'rock'
