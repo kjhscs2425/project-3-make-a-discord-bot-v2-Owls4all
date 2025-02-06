@@ -116,6 +116,12 @@ def respond(user_message, user_name):
     rps.isPlaying = False
     gameState = 'not playing'
     return f"{rps.result}"
+  if ticTacToe.isPlaying and ticTacToe.player == user_name:
+    if user_message.isdigit():
+      playerchoice = int(user_message)
+      ticTacToe.takeTurn()
+    else:
+      return 'Right now I only support plays in the form of a number 0-8'
   if 'do you like potatoes' in user_message.lower():
     return "Yes."
   if 'i like potatoes' in user_message.lower():
