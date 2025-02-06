@@ -1,6 +1,5 @@
 import random as r
 class game:
-    global playerchoice
     def __init__(self, player,type,playing,turn):
         self.player = player
         self.type = type
@@ -15,31 +14,33 @@ class game:
         self.player = 'nobody'
         self.isPlaying = False
         self.state = self.initialstate
-    def takeTurn(self):
+    def takeTurn(self,playerchoice):
         if self.type == 'rps':
             myDecision = r.choice['rock','paper','scissors']
             if myDecision == 'rock':
                 if playerchoice == 'rock':
-                    self.result = "The game is a draw."
+                    self.result = "I choose Rock. The game is a draw."
                 if playerchoice == 'paper':
-                    self.result = 'You win.'
+                    self.result = 'I choose Rock. Paper beats Rock. You win.'
                 if playerchoice == 'scissors':
-                    self.result = 'I win.'
+                    self.result = 'I choose Rock. Rock beats Scissors. I win.'
             elif myDecision == 'paper':
                 if playerchoice == 'paper':
-                    self.result = "The game is a draw."
+                    self.result = "I choose Paper. The game is a draw."
                 if playerchoice == 'scissors':
-                    self.result = 'You win.'
+                    self.result = 'I choose Paper. Scissors beats Paper. You win.'
                 if playerchoice == 'rock':
-                    self.result = 'I win.'
+                    self.result = 'I choose Paper. Paper beats Rock. I win.'
             if myDecision == 'scissors':
                 if playerchoice == 'scissors':
-                    self.result = "The game is a draw."
+                    self.result = "I choose Scissors. The game is a draw."
                 if playerchoice == 'paper':
-                    self.result = 'I win.'
+                    self.result = 'I choose Scissors. Scissors beats Paper. I win.'
                 if playerchoice == 'rock':
-                    self.result = 'You win.'
+                    self.result = 'I choose Scissors. Rock beats Scissors. You win.'
         if self.type == 'ticTacToe':
-            pass
+            if self.state[playerchoice] != ' ':
+                self.turn = 'player turn'
+                self.error = 'You cannot play in a space that is already taken!'
 rps=game('none','rps',False)
 ticTacToe = game('none','ticTacToe',False)
