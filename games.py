@@ -1,6 +1,6 @@
 import random as r
 class game:
-    def __init__(self, player,type,playing,turn):
+    def __init__(self, player,type,playing):
         self.player = player
         self.type = type
         self.isPlaying = playing
