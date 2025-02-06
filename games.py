@@ -75,7 +75,7 @@ class game:
                         attempt = self.state[myChoice]
                     
     def displayState(self):
-        if self.type == ticTacToe:
+        if self.type == 'ticTacToe':
             outputString = f' {self.state[0]} | {self.state[1]} | {self.state[2]} \n ----------\n  {self.state[3]} | {self.state[4]} | {self.state[5]} \n ----------\n {self.state[6]} | {self.state[7]} | {self.state[8]}'
             return outputString
 rps=game('none','rps',False)
