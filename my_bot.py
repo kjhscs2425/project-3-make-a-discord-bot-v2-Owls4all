@@ -27,7 +27,7 @@ def should_i_respond(user_message, user_name):
     for game in allGames:
       if game.isPlaying:
         playingAnything = True
-    if not playingAnything:
+    if not playingAnything and gameState == 'playing':
       gameState = 'not playing'
     if gameState != 'not playing':
       return True
