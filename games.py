@@ -42,5 +42,9 @@ class game:
             if self.state[playerchoice] != ' ':
                 self.turn = 'player turn'
                 self.error = 'You cannot play in a space that is already taken!'
+    def displayState(self):
+        if self.type == ticTacToe:
+            outputString = f' {self.state[0]} | {self.state[1]} | {self.state[2]} \n ----------\n  {self.state[3]} | {self.state[4]} | {self.state[5]} \n ----------\n {self.state[6]} | {self.state[7]} | {self.state[8]}'
+            return outputString
 rps=game('none','rps',False)
 ticTacToe = game('none','ticTacToe',False)
