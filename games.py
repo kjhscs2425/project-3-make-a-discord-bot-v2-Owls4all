@@ -16,7 +16,7 @@ class game:
         self.state = self.initialstate
     def takeTurn(self,playerchoice):
         if self.type == 'rps':
-            myDecision = r.choice['rock','paper','scissors']
+            myDecision = r.choice(['rock','paper','scissors'])
             if myDecision == 'rock':
                 if playerchoice == 'rock':
                     self.result = "I choose Rock. The game is a draw."
