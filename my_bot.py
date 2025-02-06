@@ -1,7 +1,7 @@
 import random as r
 from utility import *
 from games import *
-gameState = "not playing"
+
 fairchoice = 'none'
 playerchoice = 'none'
 rps_player = 'nobody'
@@ -86,11 +86,13 @@ def respond(user_message, user_name):
   if gameState == 'choosing':
     if 'rock paper scissors' in user_message.lower():
       gameState = 'playing'
+      ticTacToe.reset()
       rps.player = user_name
       rps.isPlaying = True
       return 'All right. I\'ve chosen something. What will you choose?'
     if 'tic tac toe' in user_message.lower():
       gameState = 'playing'
+      ticTacToe.reset()
       ticTacToe.player = user_name
       ticTacToe.isPlaying = True
       return f'All right. You go first. The current board state is {ticTacToe.displayState()}'
@@ -111,6 +113,8 @@ def respond(user_message, user_name):
         return "That's not one of the options"
     rps.turn = 'bot'
     rps.takeTurn(playerchoice)
+    rps.isPlaying = False
+    gameState = 'not playing'
     return f"{rps.result}"
   if 'do you like potatoes' in user_message.lower():
     return "Yes."

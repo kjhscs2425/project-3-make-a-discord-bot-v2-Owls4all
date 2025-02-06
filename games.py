@@ -1,4 +1,5 @@
 import random as r
+gameState = "not playing"
 class game:
     def __init__(self, player,type,playing):
         self.player = player
@@ -47,33 +48,49 @@ class game:
             elif playerchoice >8:
                 self.error = 'You cannot play outside the board!'
             else:
-                self.state = 'Terminate'
+                self.something = 'Terminate'
                 self.state[playerchoice] = 'x'
                 for space in self.state():
                     if space == ' ':
-                        self.state = 'ongoing'
+                        self.something = 'ongoing'
+                win = self.checkForWinner
+                if win == 'x':
+                    self.result = "You win"
+                if win == 'o':
+                    self.result = "I win"
+                else:
+                    if self.something == 'ongoing':
+                        attempt = 'undecided'
+                        while not attempt == ' ':
+                            myChoice = r.randint(0,8)
+                            attempt = self.state[myChoice]
+                    else:
+                        win = self.checkForWinner
+                        if win == 'x':
+                            self.result = "You win"
+                        if win == 'o':
+                            self.result = "I win" 
+                        else:
+                            self.result = 'The board is full and nobody has won'    
+    def checkForWinner(self):
+        if self.type == 'ticTacToe':
                 if  self.state[0] == self.state[1] == self.state[2] != ' ':
-                    self.result = f"{self.state[0]} Wins!"
+                    return self.state[0]
                 if self.state[0] == self.state[3] == self.state[6] != ' ':
-                    self.result = f"{self.state[0]} Wins!"
+                    return self.state[1]
                 if self.state[0] == self.state[4] == self.state[8]!= ' ':
-                    self.result = f"{self.state[0]} Wins!"
+                    return self.state[0]
                 if self.state[1] == self.state[4] == self.state[7]!= ' ':
-                    self.result = f"{self.state[1]} Wins!"
+                    return self.state[1]
                 if self.state[3] == self.state[4] == self.state[5]!= ' ':
-                    self.result = f"{self.state[3]} Wins!"
+                    return self.state[3]
                 if self.state[2] == self.state[5] == self.state[8] != ' ':
-                    self.result = f"{self.state[2]} Wins!"
+                    return self.state[2]
                 if self.state[2] == self.state[4] == self.state[6] != ' ':
-                    self.result = f"{self.state[2]} Wins!"
+                    return self.state[2]
                 if self.state[6] == self.state[7] == self.state[8] != ' ':
-                    self.result = f"{self.state[6]} Wins!"
-                if self.state == 'ongoing':
-                    attempt = 'undecided'
-                    while not attempt == ' ':
-                        myChoice = r.randint(0,8)
-                        attempt = self.state[myChoice]
-                    
+                    return self.state[6]
+                return 'Nobody'
     def displayState(self):
         if self.type == 'ticTacToe':
             outputString = f' {self.state[0]} | {self.state[1]} | {self.state[2]} \n ----------\n  {self.state[3]} | {self.state[4]} | {self.state[5]} \n ----------\n {self.state[6]} | {self.state[7]} | {self.state[8]}'
