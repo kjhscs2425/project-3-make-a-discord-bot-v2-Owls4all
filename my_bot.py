@@ -119,7 +119,7 @@ def respond(user_message, user_name):
   if ticTacToe.isPlaying and ticTacToe.player == user_name:
     if user_message.isdigit():
       playerchoice = int(user_message)
-      ticTacToe.takeTurn()
+      ticTacToe.takeTurn(playerchoice)
     else:
       return 'Right now I only support plays in the form of a number 0-8'
   if 'do you like potatoes' in user_message.lower():
