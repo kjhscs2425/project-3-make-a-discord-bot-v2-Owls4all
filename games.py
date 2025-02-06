@@ -24,7 +24,7 @@ class game:
                     self.result = 'I choose Rock. Paper beats Rock. You win.'
                 if playerchoice == 'scissors':
                     self.result = 'I choose Rock. Rock beats Scissors. I win.'
-            elif myDecision == 'paper':
+            if myDecision == 'paper':
                 if playerchoice == 'paper':
                     self.result = "I choose Paper. The game is a draw."
                 if playerchoice == 'scissors':
@@ -38,10 +38,15 @@ class game:
                     self.result = 'I choose Scissors. Scissors beats Paper. I win.'
                 if playerchoice == 'rock':
                     self.result = 'I choose Scissors. Rock beats Scissors. You win.'
+            self.isPlaying = False
+            self.player = 'none'    
         if self.type == 'ticTacToe':
             if self.state[playerchoice] != ' ':
                 self.turn = 'player turn'
                 self.error = 'You cannot play in a space that is already taken!'
+            else:
+                self.state[playerchoice] = 'x'
+                pass #I'll code this in a bit    
     def displayState(self):
         if self.type == ticTacToe:
             outputString = f' {self.state[0]} | {self.state[1]} | {self.state[2]} \n ----------\n  {self.state[3]} | {self.state[4]} | {self.state[5]} \n ----------\n {self.state[6]} | {self.state[7]} | {self.state[8]}'
