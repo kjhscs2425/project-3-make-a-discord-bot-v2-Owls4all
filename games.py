@@ -50,7 +50,7 @@ class game:
             else:
                 self.something = 'Terminate'
                 self.state[playerchoice] = 'x'
-                for space in self.state():
+                for space in self.state:
                     if space == ' ':
                         self.something = 'ongoing'
                 win = self.checkForWinner
