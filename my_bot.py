@@ -88,7 +88,7 @@ def respond(user_message, user_name):
       gameState = 'playing'
       rps.player = user_name
       rps.isPlaying = True
-      return 'All right'
+      return 'All right. I\'ve chosen something. What will you choose?'
   if rps.isPlaying and rps.player == user_name:
     if 'rock' in user_message.lower() and not 'paper' in user_message.lower() and not 'scissors' in user_message.lower():
       playerchoice = 'rock'
