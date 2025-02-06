@@ -1,7 +1,7 @@
 import random as r
 from utility import *
 from games import *
-
+allGames = [rps,ticTacToe]
 fairchoice = 'none'
 playerchoice = 'none'
 rps_player = 'nobody'
@@ -22,10 +22,17 @@ def should_i_respond(user_message, user_name):
   global ticTacToe
   if "Frost" in user_message:
     return True
-  elif gameState != 'not playing':
-    return True
   else:
-    return False
+    playingAnything = False
+    for game in allGames:
+      if game.isPlaying:
+        playingAnything = True
+    if not playingAnything:
+      gameState = 'not playing'
+    if gameState != 'not playing':
+      return True
+    else:
+      return False
 
 def updateData():
   global storage

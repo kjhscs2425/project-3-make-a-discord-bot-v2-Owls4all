@@ -64,6 +64,7 @@ class game:
                         while not attempt == ' ':
                             myChoice = r.randint(0,8)
                             attempt = self.state[myChoice]
+                        self.state[myChoice]='o'
                     else:
                         win = self.checkForWinner
                         if win == 'x':
@@ -93,7 +94,22 @@ class game:
                 return 'Nobody'
     def displayState(self):
         if self.type == 'ticTacToe':
-            outputString = f'\n  {self.state[0]}  |   {self.state[1]}   |  {self.state[2]}  \n ----------\n  {self.state[3]}  |   {self.state[4]}   |  {self.state[5]} \n ----------\n  {self.state[6]}  |   {self.state[7]}   |  {self.state[8]}'
+            self.something = 'No Space'
+            for space in self.state:
+                    if space == ' ':
+                        self.something = 'ongoing'
+            if self.checkForWinner() == 'Nobody':
+                if self.something == 'No Space':
+                    outputString = f'The game is a draw!\n  {self.state[0]}  |   {self.state[1]}   |  {self.state[2]}  \n ----------\n  {self.state[3]}  |   {self.state[4]}   |  {self.state[5]} \n ----------\n  {self.state[6]}  |   {self.state[7]}   |  {self.state[8]}'
+                    self.isPlaying = False
+                else:
+                    outputString = f'\n  {self.state[0]}  |   {self.state[1]}   |  {self.state[2]}  \n ----------\n  {self.state[3]}  |   {self.state[4]}   |  {self.state[5]} \n ----------\n  {self.state[6]}  |   {self.state[7]}   |  {self.state[8]}'
+            elif self.checkForWinner() == 'x':
+                outputString = f'You Win.\n  {self.state[0]}  |   {self.state[1]}   |  {self.state[2]}  \n ----------\n  {self.state[3]}  |   {self.state[4]}   |  {self.state[5]} \n ----------\n  {self.state[6]}  |   {self.state[7]}   |  {self.state[8]}'
+                self.isPlaying = False
+            elif self.checkForWinner() == 'o':
+                outputString = f'I Win.\n  {self.state[0]}  |   {self.state[1]}   |  {self.state[2]}  \n ----------\n  {self.state[3]}  |   {self.state[4]}   |  {self.state[5]} \n ----------\n  {self.state[6]}  |   {self.state[7]}   |  {self.state[8]}'
+                self.isPlaying = False
             return outputString
 rps=game('none','rps',False)
 ticTacToe = game('none','ticTacToe',False)
