@@ -44,9 +44,36 @@ class game:
             if self.state[playerchoice] != ' ':
                 self.turn = 'player turn'
                 self.error = 'You cannot play in a space that is already taken!'
+            elif playerchoice >8:
+                self.error = 'You cannot play outside the board!'
             else:
+                self.state = 'Terminate'
                 self.state[playerchoice] = 'x'
-                pass #I'll code this in a bit    
+                for space in self.state():
+                    if space == ' ':
+                        self.state = 'ongoing'
+                if  self.state[0] == self.state[1] == self.state[2]:
+                    self.result = f"{self.state[0]} Wins!"
+                if self.state[0] == self.state[3] == self.state[6]:
+                    self.result = f"{self.state[0]} Wins!"
+                if self.state[0] == self.state[4] == self.state[8]:
+                    self.result = f"{self.state[0]} Wins!"
+                if self.state[1] == self.state[4] == self.state[7]:
+                    self.result = f"{self.state[1]} Wins!"
+                if self.state[3] == self.state[4] == self.state[5]:
+                    self.result = f"{self.state[3]} Wins!"
+                if self.state[2] == self.state[5] == self.state[8]:
+                    self.result = f"{self.state[2]} Wins!"
+                if self.state[2] == self.state[4] == self.state[6]:
+                    self.result = f"{self.state[2]} Wins!"
+                if self.state[6] == self.state[7] == self.state[8]:
+                    self.result = f"{self.state[6]} Wins!"
+                if self.state == 'ongoing':
+                    attempt = 'undecided'
+                    while not attempt == ' ':
+                        myChoice = r.randint(0,8)
+                        attempt = self.state[myChoice]
+                    
     def displayState(self):
         if self.type == ticTacToe:
             outputString = f' {self.state[0]} | {self.state[1]} | {self.state[2]} \n ----------\n  {self.state[3]} | {self.state[4]} | {self.state[5]} \n ----------\n {self.state[6]} | {self.state[7]} | {self.state[8]}'
