@@ -85,8 +85,10 @@ def respond(user_message, user_name):
     return "All right. What do you want to play? I know tic tac toe and rock paper scissors."
   if gameState == 'choosing':
     if 'rock paper scissors' in user_message:
+      gameState = 'playing'
       rps.player = user_name
       rps.isPlaying = True
+      return 'All right'
   if rps.isPlaying and rps.player == user_name:
     if 'rock' in user_message.lower() and not 'paper' in user_message.lower() and not 'scissors' in user_message.lower():
       playerchoice = 'rock'
@@ -100,40 +102,9 @@ def respond(user_message, user_name):
         return "You can't choose multiple options! That's cheating!"
       else:
         return "That's not one of the options"
-  if rps.player == 'owls4all' or rps.player == 'school CS burner account':
-    gameState == 'player wins'
-  if gameState == 'cheat':
-    if playerchoice == 'rock':
-      gameState = 'not playing'
-      return "I choose paper."
-    if playerchoice == 'paper':
-      gameState = 'not playing'
-      return "I choose scissors."
-    if playerchoice == 'scissors':
-      gameState = 'not playing'
-      return "I choose rock."
-  if gameState == 'player wins':
-    if playerchoice == 'scissors':
-      gameState = 'not playing'
-      return "I choose paper."
-    if playerchoice == 'rock':
-      gameState = 'not playing'
-      return "I choose scissors."
-    if playerchoice == 'paper':
-      gameState = 'not playing'
-      return "I choose rock."
-  if gameState == 'fair':
-    victorStatement = '' 
-    if indexInList(playerchoice,options) == indexInList(fairchoice,options):
-      victorStatement = "The game is a tie." 
-    elif indexInList(playerchoice,options) - indexInList(fairchoice,options) == 1:
-      victorStatement = f"{playerchoice} beats {fairchoice}. You win." 
-    elif indexInList(playerchoice,options) - indexInList(fairchoice,options) !=1:
-      victorStatement = f"{fairchoice} beats {playerchoice}. I win."
-    if playerchoice == 'rock' and fairchoice == 'scissors':
-      victorStatement = f"{playerchoice} beats {fairchoice}. You win." 
-    gameState = 'not playing'
-    return f"I choose {fairchoice}. {victorStatement}"
+    rps.turn = 'bot'
+    rps.takeTurn(playerchoice)
+    return f"{rps.result}"
   if 'do you like potatoes' in user_message.lower():
     return "Yes."
   if 'i like potatoes' in user_message.lower():
