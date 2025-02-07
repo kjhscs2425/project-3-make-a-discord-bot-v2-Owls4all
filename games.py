@@ -95,6 +95,7 @@ class game:
                 return 'Nobody'
     def checkPairs(self):
         pairs=[]
+        block = 4
         winPairs = [[0,1],[0,2],[0,3],[0,4][0,6],[0,8],[1,2],[1,4],[1,7],[2,4],[2,5],[2,6],[2,8],[3,4],[3,5],[3,6],[4,5],[4,6],[4,7],[4,8],[5,8],[6,7],[6,8],[7,8]]
         thirdSquares=[2,1,6,3,4,0,7,4,6,8,4,5,5,4,0,3,2,1,0,2,8,7,6]
         threatenedPairs=[]
@@ -103,8 +104,20 @@ class game:
                 if i != j and self.state[i] == self.state[j] and self.state[i] != ' ':
                     pairs.append[[i,j]]
         for pair in pairs:
-            if searchList(pair,winPairs) or searchList([pair[1],pair[0]],winPairs):
-                threatenedPairs.append[pair]
+            try1 = indexInList(pair,winPairs)
+            try2 = indexInList([pair[1],pair[0]],winPairs)
+            if try1 != -1:
+                if self.state[try1] != ' ':
+                    threatenedPairs.append[pair]
+            elif try2 != -1:
+                if self.state[try2] != ' ':
+                    threatenedPairs.append[pair]
+        for pair in threatenedPairs:
+            if self.state[pair[0]] == 'o':
+                return thirdSquares[indexInList(pair,winPairs)]
+            elif self.state[pair[0]] == 'x':
+                block == thirdSquares[indexInList(pair,winPairs)]
+        return block
     def displayState(self):
         if self.type == 'ticTacToe':
             self.something = 'No Space'
