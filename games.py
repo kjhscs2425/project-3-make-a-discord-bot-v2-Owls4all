@@ -1,4 +1,5 @@
 import random as r
+from utility import *
 gameState = "not playing"
 class game:
     def __init__(self, player,type,playing):
@@ -92,6 +93,18 @@ class game:
                 if self.state[6] == self.state[7] == self.state[8] != ' ':
                     return self.state[6]
                 return 'Nobody'
+    def checkPairs(self):
+        pairs=[]
+        winPairs = [[0,1],[0,2],[0,3],[0,4][0,6],[0,8],[1,2],[1,4],[1,7],[2,4],[2,5],[2,6],[2,8],[3,4],[3,5],[3,6],[4,5],[4,6],[4,7],[4,8],[5,8],[6,7],[6,8],[7,8]]
+        thirdSquares=[2,1,6,3,4,0,7,4,6,8,4,5,5,4,0,3,2,1,0,2,8,7,6]
+        threatenedPairs=[]
+        for i in range(9):
+            for j in range(9):
+                if i != j and self.state[i] == self.state[j] and self.state[i] != ' ':
+                    pairs.append[[i,j]]
+        for pair in pairs:
+            if searchList(pair,winPairs) or searchList([pair[1],pair[0]],winPairs):
+                threatenedPairs.append[pair]
     def displayState(self):
         if self.type == 'ticTacToe':
             self.something = 'No Space'
