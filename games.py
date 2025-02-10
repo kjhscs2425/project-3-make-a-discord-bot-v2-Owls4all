@@ -17,7 +17,8 @@ class game:
         self.player = 'nobody'
         self.isPlaying = False
         self.state = self.initialstate
-        print('Thinks it reset tictactoe')
+        #print('Thinks it reset tictactoe')
+        #print(self.state)
     def takeTurn(self,playerchoice):
         if self.type == 'rps':
             myDecision = r.choice(['rock','paper','scissors'])

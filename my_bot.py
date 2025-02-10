@@ -262,7 +262,7 @@ def respond(user_message, user_name):
       stringToOutput = stringToOutput.replace(' you ',' me ')
       stringToOutput = stringToOutput.replace('TEMPORARYREPLACEMENTWORD',' you ')
     return stringToOutput
-  if "what is" in user_message.replace('?',''):
+  if "what is" in user_message.replace('?','')or 'what are' in user_message.replace('?',''):
     getData()
     state = ''
     key = ''
@@ -272,6 +272,8 @@ def respond(user_message, user_name):
       elif state == 'what':
         if word == 'is':
           state = 'is'
+        elif word == 'are':
+          state = 'are'
         else:
           state = ''
       elif state == 'is':
@@ -283,8 +285,8 @@ def respond(user_message, user_name):
       stringToOutput = stringToOutput.replace(' your ','TEMPORARYREPLACEMENTWORD')
       stringToOutput = stringToOutput.replace(' my ',' your ')
       stringToOutput = stringToOutput.replace('TEMPORARYREPLACEMENTWORD','my')
-      stringToOutput = stringToOutput.replace(' me ','TEMPORARYREPLACEMENTWORD')
-      stringToOutput = stringToOutput.replace(' you ',' me ')
+      stringToOutput = stringToOutput.replace(' I ','TEMPORARYREPLACEMENTWORD')
+      stringToOutput = stringToOutput.replace(' you ',' I ')
       stringToOutput = stringToOutput.replace('TEMPORARYREPLACEMENTWORD',' you ')
       return stringToOutput[1:]
     else:
