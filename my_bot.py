@@ -301,7 +301,7 @@ def respond(user_message, user_name):
       stringToOutput = stringToOutput.replace(' I ','TEMPORARYREPLACEMENTWORD')
       stringToOutput = stringToOutput.replace(' you ',' I ')
       stringToOutput = stringToOutput.replace('TEMPORARYREPLACEMENTWORD',' you ')
-      return stringToOutput
+      return f"I can't remember what {stringToOutput}is. Maybe I never knew?"
     
   if "what does" in user_message and 'mean' in user_message.replace('?',''):
     getData()
