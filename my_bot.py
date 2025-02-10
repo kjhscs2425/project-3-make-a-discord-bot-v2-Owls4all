@@ -128,6 +128,8 @@ def respond(user_message, user_name):
     if user_message.isdigit():
       playerchoice = int(user_message)
       ticTacToe.takeTurn(playerchoice)
+      if ticTacToe.state == ticTacToe.oldstate:
+        return f"{ticTacToe.error} {ticTacToe.displayState()}"
       return ticTacToe.displayState()
     else:
       return 'Right now I only support plays in the form of a number 0-8'
