@@ -255,12 +255,12 @@ def respond(user_message, user_name):
       pass
     else:
       stringToOutput = f"Got it. {key} = {value}"
-      stringToOutput.replace(' your ','TEMPORARYREPLACEMENTWORD')
-      stringToOutput.replace(' my ',' your ')
-      stringToOutput.replace('TEMPORARYREPLACEMENTWORD','my')
-      stringToOutput.replace(' me ','TEMPORARYREPLACEMENTWORD')
-      stringToOutput.replace(' you ',' me ')
-      stringToOutput.replace('TEMPORARYREPLACEMENTWORD',' you ')
+      stringToOutput = stringToOutput.replace(' your ','TEMPORARYREPLACEMENTWORD')
+      stringToOutput = stringToOutput.replace(' my ',' your ')
+      stringToOutput = stringToOutput.replace('TEMPORARYREPLACEMENTWORD','my')
+      stringToOutput = stringToOutput.replace(' me ','TEMPORARYREPLACEMENTWORD')
+      stringToOutput = stringToOutput.replace(' you ',' me ')
+      stringToOutput = stringToOutput.replace('TEMPORARYREPLACEMENTWORD',' you ')
     return stringToOutput
   if "what is" in user_message.replace('?',''):
     getData()
@@ -280,12 +280,12 @@ def respond(user_message, user_name):
       stringToOutput = f"{key}is {storage[key]}"
       if 'TEMPORARYREPLACEMENTWORD' in stringToOutput:
         return stringToOutput
-      stringToOutput.replace(' your ','TEMPORARYREPLACEMENTWORD')
-      stringToOutput.replace(' my ',' your ')
-      stringToOutput.replace('TEMPORARYREPLACEMENTWORD','my')
-      stringToOutput.replace(' me ','TEMPORARYREPLACEMENTWORD')
-      stringToOutput.replace(' you ',' me ')
-      stringToOutput.replace('TEMPORARYREPLACEMENTWORD',' you ')
+      stringToOutput = stringToOutput.replace(' your ','TEMPORARYREPLACEMENTWORD')
+      stringToOutput = stringToOutput.replace(' my ',' your ')
+      stringToOutput = stringToOutput.replace('TEMPORARYREPLACEMENTWORD','my')
+      stringToOutput = stringToOutput.replace(' me ','TEMPORARYREPLACEMENTWORD')
+      stringToOutput = stringToOutput.replace(' you ',' me ')
+      stringToOutput = stringToOutput.replace('TEMPORARYREPLACEMENTWORD',' you ')
       return stringToOutput
     else:
       if 'TEMPORARYREPLACEMENTWORD' in key:
@@ -293,12 +293,12 @@ def respond(user_message, user_name):
       stringToOutput = key
       if 'TEMPORARYREPLACEMENTWORD' in stringToOutput:
         return stringToOutput
-      stringToOutput.replace(' your ','TEMPORARYREPLACEMENTWORD')
-      stringToOutput.replace(' my ',' your ')
-      stringToOutput.replace('TEMPORARYREPLACEMENTWORD','my')
-      stringToOutput.replace(' me ','TEMPORARYREPLACEMENTWORD')
-      stringToOutput.replace(' you ',' me ')
-      stringToOutput.replace('TEMPORARYREPLACEMENTWORD',' you ')
+      stringToOutput = stringToOutput.replace(' your ','TEMPORARYREPLACEMENTWORD')
+      stringToOutput = stringToOutput.replace(' my ',' your ')
+      stringToOutput = stringToOutput.replace('TEMPORARYREPLACEMENTWORD','my')
+      stringToOutput = stringToOutput.replace(' me ','TEMPORARYREPLACEMENTWORD')
+      stringToOutput = stringToOutput.replace(' you ',' me ')
+      stringToOutput = stringToOutput.replace('TEMPORARYREPLACEMENTWORD',' you ')
       return stringToOutput
     
   if "what does" in user_message and 'mean' in user_message.replace('?',''):
