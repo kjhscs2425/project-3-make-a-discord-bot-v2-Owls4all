@@ -47,3 +47,14 @@ def insert(thing,index,list):
             else:
                 list[-i]=list[-i-1]
         list[index]=thing
+def swaps(string,listOfpairs):
+    if 'TEMP-STRING' in string:
+        return string
+    else:
+        for pair in listOfpairs:
+            string = string.replace(pair[0],f' TEMP-STRING{indexInList(pair,listOfpairs)} ')
+            string = string.replace(pair[1],f' TEMP-STRING{indexInList(pair,listOfpairs)+len(listOfpairs)} ')
+        for pair in listOfpairs:
+            string = string.replace(f' TEMP-STRING{indexInList(pair,listOfpairs)} ',pair[1])
+            string.replace(f' TEMP-STRING{indexInList(pair,listOfpairs)+len(listOfpairs)} ',pair[0])
+    return string

@@ -7,7 +7,7 @@ playerchoice = 'none'
 rps_player = 'nobody'
 options = ['rock','paper','scissors']
 storage ={}
-
+grammarStuff = [[' you are ',' I am '],[' your ',' my '],[' you ',' me ']]
 """**Do NOT change the name of this function.**
 
 This function will be called every time anyone says anything on a channel where the bot lives.
@@ -255,12 +255,12 @@ def respond(user_message, user_name):
       pass
     else:
       stringToOutput = f"Got it. {key} = {value}"
-      stringToOutput = stringToOutput.replace(' your ','TEMPORARYREPLACEMENTWORD')
+      stringToOutput = stringToOutput.replace(' your ','TEMPORARYREPLACEMENTWORD1')
       stringToOutput = stringToOutput.replace(' my ',' your ')
-      stringToOutput = stringToOutput.replace('TEMPORARYREPLACEMENTWORD','my')
-      stringToOutput = stringToOutput.replace(' me ','TEMPORARYREPLACEMENTWORD')
+      stringToOutput = stringToOutput.replace('TEMPORARYREPLACEMENTWORD1','my')
+      stringToOutput = stringToOutput.replace(' me ','TEMPORARYREPLACEMENTWORD1')
       stringToOutput = stringToOutput.replace(' you ',' me ')
-      stringToOutput = stringToOutput.replace('TEMPORARYREPLACEMENTWORD',' you ')
+      stringToOutput = stringToOutput.replace('TEMPORARYREPLACEMENTWORD1',' you ')
     return stringToOutput
   if "what is" in user_message.replace('?','')or 'what are' in user_message.replace('?',''):
     getData()
