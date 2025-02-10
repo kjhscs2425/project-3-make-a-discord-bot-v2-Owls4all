@@ -61,11 +61,12 @@ class game:
                     self.result = "I win"
                 else:
                     if self.something == 'ongoing':
-                        attempt = 'undecided'
-                        while not attempt == ' ':
-                            myChoice = r.randint(0,8)
-                            attempt = self.state[myChoice]
-                        self.state[myChoice]='o'
+                        self.state[self.chooseMove()]='o'
+                        win = self.checkForWinner
+                        if win == 'x':
+                            self.result = "You win"
+                        if win == 'o':
+                            self.result = "I win" 
                     else:
                         win = self.checkForWinner
                         if win == 'x':
@@ -93,7 +94,7 @@ class game:
                 if self.state[6] == self.state[7] == self.state[8] != ' ':
                     return self.state[6]
                 return 'Nobody'
-    def checkPairs(self):
+    def chooseMove(self):
         pairs=[]
         block = 4
         winPairs = [[0,1],[0,2],[0,3],[0,4][0,6],[0,8],[1,2],[1,4],[1,7],[2,4],[2,5],[2,6],[2,8],[3,4],[3,5],[3,6],[4,5],[4,6],[4,7],[4,8],[5,8],[6,7],[6,8],[7,8]]
@@ -101,7 +102,7 @@ class game:
         threatenedPairs=[]
         for i in range(9):
             for j in range(9):
-                if i != j and self.state[i] == self.state[j] and self.state[i] != ' ':
+                if i != j and self.state[i] == self.state[j]:
                     pairs.append[[i,j]]
         for pair in pairs:
             try1 = indexInList(pair,winPairs)
@@ -116,8 +117,22 @@ class game:
             if self.state[pair[0]] == 'o':
                 return thirdSquares[indexInList(pair,winPairs)]
             elif self.state[pair[0]] == 'x':
-                block == thirdSquares[indexInList(pair,winPairs)]
-        return block
+                shouldBlock = True
+                block = thirdSquares[indexInList(pair,winPairs)]
+        if shouldBlock:
+            return block
+        elif self.state[4] == ' ':
+            return 4
+        else:
+            for thing in [3,7,5,1]:
+                if self.state[thing] == ' ':
+                    return thing
+            attempt = 'undecided'
+            while not attempt == ' ':
+                myChoice = r.randint(0,8)
+                attempt = self.state[myChoice]    
+            return myChoice        
+
     def displayState(self):
         if self.type == 'ticTacToe':
             self.something = 'No Space'
