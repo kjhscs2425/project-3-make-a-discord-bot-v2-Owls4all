@@ -20,6 +20,7 @@ def should_i_respond(user_message, user_name):
   global gameState
   global rps
   global ticTacToe
+  global grammarStuff
   if "Frost" in user_message:
     return True
   else:
@@ -251,17 +252,9 @@ def respond(user_message, user_name):
         value += word + ' '
     storage[key] = value
     updateData()
-    if 'TEMPORARYREPLACEMENTWORD' in user_message:
-      pass
-    else:
-      stringToOutput = f"Got it. {key} = {value}"
-      stringToOutput = stringToOutput.replace(' your ','TEMPORARYREPLACEMENTWORD1')
-      stringToOutput = stringToOutput.replace(' my ',' your ')
-      stringToOutput = stringToOutput.replace('TEMPORARYREPLACEMENTWORD1','my')
-      stringToOutput = stringToOutput.replace(' me ','TEMPORARYREPLACEMENTWORD1')
-      stringToOutput = stringToOutput.replace(' you ',' me ')
-      stringToOutput = stringToOutput.replace('TEMPORARYREPLACEMENTWORD1',' you ')
-    return stringToOutput
+    
+    stringToOutput = f"Got it. {key} = {value}"
+    return swaps(stringToOutput,grammarStuff)
   if "what is" in user_message.replace('?','')or 'what are' in user_message.replace('?',''):
     getData()
     state = ''
@@ -279,29 +272,17 @@ def respond(user_message, user_name):
       elif state == 'is':
         key += word.replace('?','') + ' '
     if storage.__contains__(key):
-      stringToOutput = f" {key}is {storage[key]}"
-      if 'TEMPORARYREPLACEMENTWORD' in stringToOutput:
-        return stringToOutput
-      stringToOutput = stringToOutput.replace(' your ','TEMPORARYREPLACEMENTWORD')
-      stringToOutput = stringToOutput.replace(' my ',' your ')
-      stringToOutput = stringToOutput.replace('TEMPORARYREPLACEMENTWORD','my')
-      stringToOutput = stringToOutput.replace(' I ','TEMPORARYREPLACEMENTWORD')
-      stringToOutput = stringToOutput.replace(' you ',' I ')
-      stringToOutput = stringToOutput.replace('TEMPORARYREPLACEMENTWORD',' you ')
-      return stringToOutput[1:]
+      if state == 'is':
+        stringToOutput = f" {key}is {storage[key]}"
+      else:
+        stringToOutput = f" {key}are {storage[key]}"
+      return swaps(stringToOutput[1:],grammarStuff)
     else:
-      if 'TEMPORARYREPLACEMENTWORD' in key:
-        return f"I can't remember what {key}is. Maybe I never knew?"
-      stringToOutput = key
-      if 'TEMPORARYREPLACEMENTWORD' in stringToOutput:
-        return stringToOutput
-      stringToOutput = stringToOutput.replace(' your ','TEMPORARYREPLACEMENTWORD')
-      stringToOutput = stringToOutput.replace(' my ',' your ')
-      stringToOutput = stringToOutput.replace('TEMPORARYREPLACEMENTWORD','my')
-      stringToOutput = stringToOutput.replace(' I ','TEMPORARYREPLACEMENTWORD')
-      stringToOutput = stringToOutput.replace(' you ',' I ')
-      stringToOutput = stringToOutput.replace('TEMPORARYREPLACEMENTWORD',' you ')
-      return f"I can't remember what {stringToOutput}is. Maybe I never knew?"
+      if state == 'is':
+        stringToOutput = swaps(key+'is',grammarStuff)
+      elif state == 'are':
+        stringToOutput = swaps(key+'are',grammarStuff)
+      return f"I can't remember what {stringToOutput}. Maybe I never knew?"
     
   if "what does" in user_message and 'mean' in user_message.replace('?',''):
     getData()
@@ -319,8 +300,9 @@ def respond(user_message, user_name):
         if word != 'mean':
           key += word.replace('?','') + ' '
     if storage.__contains__(key):
-      return f"{key}means {storage[key]}"
+      stringToOutput= f"{key}means {storage[key]}"
+      return swaps(stringToOutput,grammarStuff)
     else:
-      return f"I can't remember what {key}means. Maybe I never knew?"
+      return f"I can't remember what {swaps(key,grammarStuff)}means. Maybe I never knew?"
   return "I don't know what that means"
   
