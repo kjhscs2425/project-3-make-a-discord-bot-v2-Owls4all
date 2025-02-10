@@ -20,6 +20,7 @@ class game:
         #print('Thinks it reset tictactoe')
         #print(self.state)
     def takeTurn(self,playerchoice):
+        self.oldstate= self.state
         if self.type == 'rps':
             myDecision = r.choice(['rock','paper','scissors'])
             if myDecision == 'rock':
