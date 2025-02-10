@@ -7,7 +7,7 @@ playerchoice = 'none'
 rps_player = 'nobody'
 options = ['rock','paper','scissors']
 storage ={}
-grammarStuff = [[' you are ',' I am '],[' your ',' my '],[' you ',' me ']]
+grammarStuff = [[' you are ',' I am '],[' your ',' my '],[' you ',' me '],[' I was ',' you were ']]
 """**Do NOT change the name of this function.**
 
 This function will be called every time anyone says anything on a channel where the bot lives.
