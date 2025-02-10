@@ -234,6 +234,8 @@ def respond(user_message, user_name):
   if 'are you listening' in user_message:
     return "Yes, I'm listening. What's up?"
   if "remember" in user_message:
+    if '-SPLIT-HERE-' in user_message or '-PAIR-' in user_message:
+      return "Nice try. You won't corrupt my data that easily."
     key = ""
     state = 'none'
     value = ''
@@ -249,7 +251,17 @@ def respond(user_message, user_name):
         value += word + ' '
     storage[key] = value
     updateData()
-    return f"Got it. {key} = {value}"
+    if 'TEMPORARYREPLACEMENTWORD' in user_message:
+      pass
+    else:
+      stringToOutput = f"Got it. {key} = {value}"
+      stringToOutput.replace(' your ','TEMPORARYREPLACEMENTWORD')
+      stringToOutput.replace(' my ',' your ')
+      stringToOutput.replace('TEMPORARYREPLACEMENTWORD','my')
+      stringToOutput.replace(' me ','TEMPORARYREPLACEMENTWORD')
+      stringToOutput.replace(' you ',' me ')
+      stringToOutput.replace('TEMPORARYREPLACEMENTWORD',' you ')
+    return stringToOutput
   if "what is" in user_message.replace('?',''):
     getData()
     state = ''
@@ -265,9 +277,30 @@ def respond(user_message, user_name):
       elif state == 'is':
         key += word.replace('?','') + ' '
     if storage.__contains__(key):
-      return f"{key}is {storage[key]}"
+      stringToOutput = f"{key}is {storage[key]}"
+      if 'TEMPORARYREPLACEMENTWORD' in stringToOutput:
+        return stringToOutput
+      stringToOutput.replace(' your ','TEMPORARYREPLACEMENTWORD')
+      stringToOutput.replace(' my ',' your ')
+      stringToOutput.replace('TEMPORARYREPLACEMENTWORD','my')
+      stringToOutput.replace(' me ','TEMPORARYREPLACEMENTWORD')
+      stringToOutput.replace(' you ',' me ')
+      stringToOutput.replace('TEMPORARYREPLACEMENTWORD',' you ')
+      return stringToOutput
     else:
-      return f"I can't remember what {key}is. Maybe I never knew?"
+      if 'TEMPORARYREPLACEMENTWORD' in key:
+        return f"I can't remember what {key}is. Maybe I never knew?"
+      stringToOutput = key
+      if 'TEMPORARYREPLACEMENTWORD' in stringToOutput:
+        return stringToOutput
+      stringToOutput.replace(' your ','TEMPORARYREPLACEMENTWORD')
+      stringToOutput.replace(' my ',' your ')
+      stringToOutput.replace('TEMPORARYREPLACEMENTWORD','my')
+      stringToOutput.replace(' me ','TEMPORARYREPLACEMENTWORD')
+      stringToOutput.replace(' you ',' me ')
+      stringToOutput.replace('TEMPORARYREPLACEMENTWORD',' you ')
+      return stringToOutput
+    
   if "what does" in user_message and 'mean' in user_message.replace('?',''):
     getData()
     state =''
