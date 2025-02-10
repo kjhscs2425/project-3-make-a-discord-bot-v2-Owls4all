@@ -47,11 +47,11 @@ class game:
             self.isPlaying = False
             self.player = 'none'    
         if self.type == 'ticTacToe':
-            if self.state[playerchoice] != ' ':
+            if playerchoice >8:
+                self.error = 'You cannot play outside the board!'
+            elif self.state[playerchoice] != ' ':
                 self.turn = 'player turn'
                 self.error = 'You cannot play in a space that is already taken!'
-            elif playerchoice >8:
-                self.error = 'You cannot play outside the board!'
             else:
                 self.something = 'Terminate'
                 self.state[playerchoice] = 'x'
