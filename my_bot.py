@@ -277,7 +277,7 @@ def respond(user_message, user_name):
       elif state == 'is':
         key += word.replace('?','') + ' '
     if storage.__contains__(key):
-      stringToOutput = f"{key}is {storage[key]}"
+      stringToOutput = f" {key}is {storage[key]}"
       if 'TEMPORARYREPLACEMENTWORD' in stringToOutput:
         return stringToOutput
       stringToOutput = stringToOutput.replace(' your ','TEMPORARYREPLACEMENTWORD')
@@ -286,7 +286,7 @@ def respond(user_message, user_name):
       stringToOutput = stringToOutput.replace(' me ','TEMPORARYREPLACEMENTWORD')
       stringToOutput = stringToOutput.replace(' you ',' me ')
       stringToOutput = stringToOutput.replace('TEMPORARYREPLACEMENTWORD',' you ')
-      return stringToOutput
+      return stringToOutput[1:]
     else:
       if 'TEMPORARYREPLACEMENTWORD' in key:
         return f"I can't remember what {key}is. Maybe I never knew?"
