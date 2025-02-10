@@ -296,8 +296,8 @@ def respond(user_message, user_name):
       stringToOutput = stringToOutput.replace(' your ','TEMPORARYREPLACEMENTWORD')
       stringToOutput = stringToOutput.replace(' my ',' your ')
       stringToOutput = stringToOutput.replace('TEMPORARYREPLACEMENTWORD','my')
-      stringToOutput = stringToOutput.replace(' me ','TEMPORARYREPLACEMENTWORD')
-      stringToOutput = stringToOutput.replace(' you ',' me ')
+      stringToOutput = stringToOutput.replace(' I ','TEMPORARYREPLACEMENTWORD')
+      stringToOutput = stringToOutput.replace(' you ',' I ')
       stringToOutput = stringToOutput.replace('TEMPORARYREPLACEMENTWORD',' you ')
       return stringToOutput
     
