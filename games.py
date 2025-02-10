@@ -12,10 +12,12 @@ class game:
             self.initialstate = 'no choice'
         if self.type == 'ticTacToe':
             self.initialstate = [' ',' ',' ',' ',' ',' ',' ',' ',' ']
+        self.state = self.initialstate
     def reset(self):
         self.player = 'nobody'
         self.isPlaying = False
         self.state = self.initialstate
+        print('Thinks it reset tictactoe')
     def takeTurn(self,playerchoice):
         if self.type == 'rps':
             myDecision = r.choice(['rock','paper','scissors'])
@@ -97,22 +99,23 @@ class game:
     def chooseMove(self):
         pairs=[]
         block = 4
-        winPairs = [[0,1],[0,2],[0,3],[0,4][0,6],[0,8],[1,2],[1,4],[1,7],[2,4],[2,5],[2,6],[2,8],[3,4],[3,5],[3,6],[4,5],[4,6],[4,7],[4,8],[5,8],[6,7],[6,8],[7,8]]
+        winPairs = [[0,1],[0,2],[0,3],[0,4],[0,6],[0,8],[1,2],[1,4],[1,7],[2,4],[2,5],[2,6],[2,8],[3,4],[3,5],[3,6],[4,5],[4,6],[4,7],[4,8],[5,8],[6,7],[6,8],[7,8]]
         thirdSquares=[2,1,6,3,4,0,7,4,6,8,4,5,5,4,0,3,2,1,0,2,8,7,6]
         threatenedPairs=[]
+        shouldBlock = False
         for i in range(9):
             for j in range(9):
                 if i != j and self.state[i] == self.state[j]:
-                    pairs.append[[i,j]]
+                    pairs.append([i,j])
         for pair in pairs:
             try1 = indexInList(pair,winPairs)
             try2 = indexInList([pair[1],pair[0]],winPairs)
             if try1 != -1:
-                if self.state[try1] != ' ':
-                    threatenedPairs.append[pair]
+                if self.state[pair[0]] != ' ':
+                    threatenedPairs.append(pair)
             elif try2 != -1:
-                if self.state[try2] != ' ':
-                    threatenedPairs.append[pair]
+                if self.state[pair[0]] != ' ':
+                    threatenedPairs.append(pair)
         for pair in threatenedPairs:
             if self.state[pair[0]] == 'o':
                 return thirdSquares[indexInList(pair,winPairs)]
