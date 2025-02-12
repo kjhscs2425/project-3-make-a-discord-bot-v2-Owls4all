@@ -11,6 +11,7 @@ class game:
         if self.type == 'rps':
             self.initialstate = 'no choice'
         if self.type == 'ticTacToe':
+            self.validMoves = [0,1,2,3,4,5,6,7,8]
             self.initialstate = [' ',' ',' ',' ',' ',' ',' ',' ',' ']
         self.state = self.initialstate
     def reset(self):
@@ -47,12 +48,10 @@ class game:
             self.isPlaying = False
             self.player = 'none'    
         if self.type == 'ticTacToe':
-            if playerchoice >8:
-                self.error = 'You cannot play outside the board!'
-            elif self.state[playerchoice] != ' ':
-                self.turn = 'player turn'
-                self.error = 'You cannot play in a space that is already taken!'
+            if not searchList(playerchoice):
+                self.error = "That's not a legal move!"
             else:
+                self.validMoves.remove(playerchoice)
                 self.something = 'Terminate'
                 self.state[playerchoice] = 'x'
                 for space in self.state:
@@ -65,7 +64,11 @@ class game:
                     self.result = "I win"
                 else:
                     if self.something == 'ongoing':
-                        self.state[self.chooseMove()]='o'
+                        attempt = self.chooseMove
+                        if not searchList(attempt,self.validMoves):
+                            attempt = r.choice(self.validMoves)
+                        self.state[attempt]='o'
+                        self.validMoves.remove(attempt)
                         win = self.checkForWinner
                         if win == 'x':
                             self.result = "You win"
