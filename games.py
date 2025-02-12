@@ -48,7 +48,7 @@ class game:
             self.isPlaying = False
             self.player = 'none'    
         if self.type == 'ticTacToe':
-            if not searchList(playerchoice):
+            if not searchList(playerchoice,self.validMoves):
                 self.error = "That's not a legal move!"
             else:
                 self.validMoves.remove(playerchoice)
