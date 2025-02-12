@@ -13,6 +13,7 @@ class game:
         if self.type == 'ticTacToe':
             self.validMoves = [0,1,2,3,4,5,6,7,8]
             self.initialstate = [' ',' ',' ',' ',' ',' ',' ',' ',' ']
+            self.error = ''
         self.state = self.initialstate
     def reset(self):
         self.player = 'nobody'
