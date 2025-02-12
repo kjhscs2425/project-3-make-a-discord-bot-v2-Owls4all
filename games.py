@@ -114,10 +114,13 @@ class game:
             try2 = indexInList([pair[1],pair[0]],winPairs)
             if try1 != -1:
                 if self.state[pair[0]] != ' ':
-                    threatenedPairs.append(pair)
+                    if thirdSquares[indexInList(pair,winPairs)] != ' ':
+                        threatenedPairs.append(pair)
             elif try2 != -1:
                 if self.state[pair[0]] != ' ':
-                    threatenedPairs.append(pair)
+                    if thirdSquares[indexInList([pair[1],pair[0]],winPairs)]:
+                        threatenedPairs.append(pair)
+
         for pair in threatenedPairs:
             if self.state[pair[0]] == 'o':
                 return thirdSquares[indexInList(pair,winPairs)]
