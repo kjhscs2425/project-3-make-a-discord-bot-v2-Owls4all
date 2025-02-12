@@ -99,6 +99,7 @@ class game:
                     return self.state[6]
                 return 'Nobody'
     def chooseMove(self):
+        self.error = ''
         pairs=[]
         block = 4
         winPairs = [[0,1],[0,2],[0,3],[0,4],[0,6],[0,8],[1,2],[1,4],[1,7],[2,4],[2,5],[2,6],[2,8],[3,4],[3,5],[3,6],[4,5],[4,6],[4,7],[4,8],[5,8],[6,7],[6,8],[7,8]]
