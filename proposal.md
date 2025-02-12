@@ -5,7 +5,7 @@ When a user says: Frost (and nothing else) #Implemented
 My bot will respond by: That's me!
 
 When a user says: Frost pick a number between 1 and 10 #Implemented
-My bot will respond by: determined randomly, either i or e
+My bot will respond by: determined randomly, either pi or e
 
 When a user says: Frost pick an integer between 1 and 10 #Implemented
 My bot will respond by: a random number between 1 and 10
@@ -33,4 +33,5 @@ My bot will respond by: I don't know what that means
 
 more stuff I want to add potentially:
 - roll dice, like d&d, with description of outcome
-- 
+- memory
+- tic tac toe
