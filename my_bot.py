@@ -94,13 +94,14 @@ def respond(user_message, user_name):
   if gameState == 'choosing':
     if 'rock paper scissors' in user_message.lower():
       gameState = 'playing'
-      ticTacToe.reset()
+      rps.reset()
       rps.player = user_name
       rps.isPlaying = True
       return 'All right. I\'ve chosen something. What will you choose?'
     if 'tic tac toe' in user_message.lower():
       gameState = 'playing'
       ticTacToe = game(user_name,"ticTacToe",True)
+      ticTacToe.isPlaying = True
       return f'All right. You go first. The current board state is {ticTacToe.displayState()}'
     else:
       return f"I don't know a game called {user_message}."
