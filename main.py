@@ -19,7 +19,7 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
-  if message.channel.name == "drebees-bot":
+  if message.channel.name == "athenas_nonsense_channel":
     if message.author != client.user:
       user_name = message.author.display_name
       if my_bot.should_i_respond(message.content, user_name):
