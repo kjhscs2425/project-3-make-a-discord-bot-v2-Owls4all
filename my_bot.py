@@ -74,6 +74,8 @@ def respond(user_message, user_name):
     return """I can do lots of things! For instance I can...
     - give a number between 1 and 10
     - play rock paper scissors
+    - play tic tac toe (in theory)
+    - answer some questions about myself
     - be annoying
     - remember things
     - roll dice
