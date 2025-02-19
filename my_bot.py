@@ -100,9 +100,7 @@ def respond(user_message, user_name):
       return 'All right. I\'ve chosen something. What will you choose?'
     if 'tic tac toe' in user_message.lower():
       gameState = 'playing'
-      ticTacToe.reset()
-      ticTacToe.player = user_name
-      ticTacToe.isPlaying = True
+      ticTacToe = game(user_name,"ticTacToe",True)
       return f'All right. You go first. The current board state is {ticTacToe.displayState()}'
     else:
       return f"I don't know a game called {user_message}."
